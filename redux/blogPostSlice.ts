@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface BlogState {
   likes: number;
@@ -14,10 +14,9 @@ export const blogPostSlice = createSlice({
   name: "blog",
   initialState: initialBlogState,
   reducers: {
-    addComment: (state, action) => {
+    addComment: (state, action: PayloadAction<string>) => {
       const copyComments: string[] = [...state.comments];
       copyComments.push(action.payload);
-
       return {
         ...state,
         comments: copyComments,
